@@ -5,6 +5,7 @@ import { checkCredentialFile, doTranslation } from "./translate";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
+
 export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
@@ -34,7 +35,16 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const statusItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  );
+  statusItem.command = "cyg-translate.finnishIt";
+  statusItem.text = "Finnish It!";
+  statusItem.show();
+
   context.subscriptions.push(disposable);
+  context.subscriptions.push(statusItem);
 }
 
 // this method is called when your extension is deactivated

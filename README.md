@@ -23,7 +23,7 @@ Translate selected text(s) into Finnish (for now)
 
 ## How to install
 
-- This extesnsion is not published on in Extension Market.
+- This extesnsion is not published in Extension Market.
 - To install, download `cyg-translate-0.0.1.vsix` file from this repo.
 - Run `code --install-extension cyg-translate-0.0.1.vsix`
 
