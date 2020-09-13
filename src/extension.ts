@@ -1,46 +1,44 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { checkCredentialFile, doTranslation } from "./translate";
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+import { doTranslation } from "./translate";
+import { checkCredentialFile } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "cyg-translate" is now active!');
+  console.log('Congratulations, your extension "translate-it" is now active!');
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
+  const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(
+    "trans",
+  );
+
   let disposable = vscode.commands.registerCommand(
-    "cyg-translate.finnishIt",
+    "translate-it.translateIt",
     () => {
-      const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(
-        "cyg"
+      const filePath: string | undefined = config.get(
+        "googleCloudCredentialPath",
       );
 
-      const filePath: string | undefined = config.get(
-        "googleCloudCredentialPath"
-      );
+      let targetLang: string | undefined = config.get("defaultTargetLanguage");
+
       if (filePath && checkCredentialFile(filePath)) {
         process.env.GOOGLE_APPLICATION_CREDENTIALS = filePath;
-        doTranslation();
+        if (!targetLang) {
+          console.log("not defined");
+          targetLang = "fi";
+        }
+        doTranslation(targetLang);
       } else {
         vscode.window.showWarningMessage(
-          "Please set the correct credential path in your CYG-Translate Extension setting"
+          "Please set the correct credential path in your Translate It Extension setting",
         );
       }
-    }
+    },
   );
 
   const statusItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
-    1000
+    1000,
   );
-  statusItem.command = "cyg-translate.finnishIt";
-  statusItem.text = "Finnish It!";
+  statusItem.command = "translate-it.translateIt";
+  statusItem.text = "Translate It!";
   statusItem.show();
 
   context.subscriptions.push(disposable);

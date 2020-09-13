@@ -2,10 +2,10 @@ import * as assert from "assert";
 import { beforeEach, afterEach } from "mocha";
 
 import * as vscode from "vscode";
-import { checkCredentialFile, doTranslation } from "../../translate";
+import { checkCredentialFile } from "../../utils";
 import * as mock from "mock-fs";
 
-suite("Cyg-Translation Test Suite", () => {
+suite("Translation Test Suite", () => {
   vscode.window.showInformationMessage("Start all tests.");
 
   beforeEach(() => {
@@ -22,10 +22,13 @@ suite("Cyg-Translation Test Suite", () => {
   });
 
   test("Check if Credential file exists", () => {
-    assert.equal(
+    assert.strictEqual(
       checkCredentialFile("path/to/fake/dir/emptyDir/credential.json"),
-      false
+      false,
     );
-    assert.equal(checkCredentialFile("path/to/fake/dir/credential.json"), true);
+    assert.strictEqual(
+      checkCredentialFile("path/to/fake/dir/credential.json"),
+      true,
+    );
   });
 });
