@@ -3,7 +3,7 @@
   "publisher": "dangquangdon",
   "displayName": "translate-it",
   "description": "Convenient helper extension to translate English to other languages during development.",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.48.0"
   },

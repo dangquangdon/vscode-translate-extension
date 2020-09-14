@@ -6,7 +6,7 @@ A little extension for translating English text to any language that google tran
 
 Translate selected text(s) into your selected target language ( default is Finnish)
 
-![translate-it](./translate_it.gif)
+![translate-it](./translate-it.gif)
 
 ## Requirements
 
