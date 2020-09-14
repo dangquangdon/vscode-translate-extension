@@ -25,7 +25,7 @@ Translate selected text(s) into your selected target language ( default is Finni
 
 ## How to install
 
-- This extension is not published yet in Extension Market.
+- [This extension is now in Extension Market](!https://marketplace.visualstudio.com/items?itemName=dangquangdon.translate-it).
 - To install, download `translate-it-0.0.1.vsix` file from this repo.
 - Run `code --install-extension translate-it-0.0.1.vsix`
 
